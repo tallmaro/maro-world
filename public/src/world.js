@@ -8,8 +8,6 @@ const clamp=THREE.MathUtils.clamp;
 const tick=()=>new Promise(resolve=>requestAnimationFrame(resolve));
 // Library and Stamba stand behind a front-row building, so their labels float above their own roofs.
 const labelAnchors={library:[0,7.1,-1],stamba:[0,7.5,-1]};
-// Orbiting the overview stops about 25° above the ground so the atlas still reads as a map; close-ups keep their low presets.
-const overviewMaxPolar=1.13;
 
 export class World {
   constructor(element,callbacks={}){
@@ -149,9 +147,8 @@ export class World {
     for(const [id,item] of this.models)item.host.visible=all||id===this.active;
     for(const [id,platform] of this.platforms)platform.visible=all||id===this.active;
     this.routes.visible=all;this.marker.visible=!!this.active;
-    this.controls.maxPolarAngle=this.active||this.tween?Math.PI/2-.05:overviewMaxPolar;
   }
-  orbit(dx,dy=0){if(!this.alive)return;this.tween=null;this.finishVisibility();const offset=this.camera.position.clone().sub(this.controls.target),s=new THREE.Spherical().setFromVector3(offset);s.theta+=dx;s.phi=clamp(s.phi+dy,this.controls.minPolarAngle,this.controls.maxPolarAngle);this.camera.position.copy(this.controls.target).add(new THREE.Vector3().setFromSpherical(s));this.controls.update();this.draw();this.callbacks.onManual?.();}
+  orbit(dx,dy=0){if(!this.alive)return;this.tween=null;const offset=this.camera.position.clone().sub(this.controls.target),s=new THREE.Spherical().setFromVector3(offset);s.theta+=dx;s.phi=clamp(s.phi+dy,.2,Math.PI/2-.05);this.camera.position.copy(this.controls.target).add(new THREE.Vector3().setFromSpherical(s));this.controls.update();this.finishVisibility();this.draw();this.callbacks.onManual?.();}
   zoom(factor){if(!this.alive)return;this.tween=null;this.camera.zoom=clamp(this.camera.zoom*factor,.5,3);this.camera.updateProjectionMatrix();this.finishVisibility();this.draw();}
   frustum(){const aspect=this.element.clientWidth/Math.max(1,this.element.clientHeight);this.camera.left=-this.span*aspect/2;this.camera.right=this.span*aspect/2;this.camera.top=this.span/2;this.camera.bottom=-this.span/2;this.camera.updateProjectionMatrix();}
   resize(){
