@@ -24,7 +24,7 @@ Each place has one song. Nothing loads until you press **Load official player**;
 | Place | Recording | Provider |
 | --- | --- | --- |
 | Bocconi library | Jürgen Paape — So weit wie noch nie, Original Mix | Spotify |
-| Home | Serge Gainsbourg — La Javanaise, Mono Version | Apple Music |
+| Home | Serge Gainsbourg — La Javanaise, Mono Version | Spotify |
 | QSI | Pop Smoke — Dior, Meet The Woo (explicit lyrics) | Spotify |
 | Stamba | Radiohead — Weird Fishes / Arpeggi, In Rainbows | Spotify |
 

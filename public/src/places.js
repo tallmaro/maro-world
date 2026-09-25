@@ -8,7 +8,7 @@ export const places=[
     intro:'I work mostly from home in Tbilisi. Here’s my corner of it: green curtains, a pale desk, and a little lamplight.',
     note:'A stylised cutaway of one room. No address, house exterior or hidden rooms are represented.',
     views:[['place','The room'],['desk','At the desk'],['shelves','The shelves']],
-    music:{artist:'Serge Gainsbourg',title:'La Javanaise',version:'Mono Version',provider:'Apple Music',url:'https://music.apple.com/us/album/la-javanaise-mono-version/1399045396?i=1399045963',embed:'https://embed.music.apple.com/us/album/bonnie-and-clyde/1399045396?i=1399045963',height:175}},
+    music:{artist:'Serge Gainsbourg',title:'La Javanaise',version:'Mono Version',provider:'Spotify',url:'https://open.spotify.com/track/09xJRXtKNRont6AXJlog44',embed:'https://open.spotify.com/embed/track/09xJRXtKNRont6AXJlog44?utm_source=oembed',height:152}},
   {id:'qsi',name:'QSI Tbilisi',short:'School days',city:'Tbilisi',chapter:'School days',color:'#9b493c',position:[8.2,0,6.6],
     intro:'Before Milan, there was QSI International School of Tbilisi. The red roofs, the veranda, the school grounds.',
     note:'A reference-based miniature of the Zurgovani campus, not a year-exact reconstruction. No school interiors are modelled.',

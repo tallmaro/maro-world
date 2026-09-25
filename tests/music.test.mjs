@@ -16,7 +16,7 @@ test('no third-party resource exists until the separate load-player action',()=>
 });
 test('exact recording and one-place lifecycle, close, offline, reconnect and pagehide',()=>{
   const {dom,element,music}=setup();
-  const urls=['https://open.spotify.com/embed/track/72aZrJKq734qOVBMUpBd0L?utm_source=oembed','https://embed.music.apple.com/us/album/bonnie-and-clyde/1399045396?i=1399045963','https://open.spotify.com/embed/track/1SslOor5usE3EFLGtiMyIn?utm_source=oembed','https://open.spotify.com/embed/track/4wajJ1o7jWIg62YqpkHC7S?utm_source=oembed'];
+  const urls=['https://open.spotify.com/embed/track/72aZrJKq734qOVBMUpBd0L?utm_source=oembed','https://open.spotify.com/embed/track/09xJRXtKNRont6AXJlog44?utm_source=oembed','https://open.spotify.com/embed/track/1SslOor5usE3EFLGtiMyIn?utm_source=oembed','https://open.spotify.com/embed/track/4wajJ1o7jWIg62YqpkHC7S?utm_source=oembed'];
   for(let i=0;i<places.length;i++){
     music.setPlace(places[i]);assert.equal(element.querySelectorAll('iframe').length,0);
     element.querySelector('[data-music-toggle]').click();element.querySelector('[data-music-load]').click();assert.equal(element.querySelector('iframe').src,urls[i]);

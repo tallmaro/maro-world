@@ -15,7 +15,7 @@ export function createServer({root=publicRoot}={}){
       const actual=await realpath(requested), base=await realpath(root);
       if(actual!==requested||!actual.startsWith(base+path.sep)||!types[path.extname(actual)]||!(await stat(actual)).isFile())throw new Error('not public');
       const data=await readFile(actual);
-      res.writeHead(200,{'Content-Type':types[path.extname(actual)],'Content-Length':data.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com https://embed.music.apple.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"});
+      res.writeHead(200,{'Content-Type':types[path.extname(actual)],'Content-Length':data.length,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"});
       res.end(req.method==='HEAD'?undefined:data);
     }catch{res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');}
   });
