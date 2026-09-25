@@ -20,6 +20,7 @@ test('exact recording and one-place lifecycle, close, offline, reconnect and pag
   for(let i=0;i<places.length;i++){
     music.setPlace(places[i]);assert.equal(element.querySelectorAll('iframe').length,0);
     element.querySelector('[data-music-toggle]').click();element.querySelector('[data-music-load]').click();assert.equal(element.querySelector('iframe').src,urls[i]);
+    assert.equal(element.querySelector('iframe').referrerPolicy,urls[i].includes('youtube')?'strict-origin-when-cross-origin':'no-referrer','only YouTube needs the origin');
   }
   element.querySelector('[data-music-close]').click();assert.equal(element.querySelectorAll('iframe').length,0);
   element.querySelector('[data-music-toggle]').click();element.querySelector('[data-music-load]').click();
