@@ -154,7 +154,8 @@ export class World {
   resize(){
     if(!this.alive)return;const width=this.element.clientWidth,height=this.element.clientHeight;if(width<1||height<1)return;
     this.renderer.setSize(width,height);this.frustum();
-    if(this.models.size){this.active?this.view(this.viewName):this.overview(true);}this.draw();
+    // Closing the place panel resizes the scene mid-glide; re-aim that glide rather than jumping to the overview.
+    if(this.models.size){this.active?this.view(this.viewName):this.overview(!this.tween);}this.draw();
   }
   draw(){if(!this.alive||this.frame||document.hidden)return;this.frame=requestAnimationFrame(time=>this.render(time));}
   render(time){
