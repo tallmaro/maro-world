@@ -13,7 +13,7 @@ export const places=[
     intro:'Before Milan, there was QSI International School of Tbilisi. The red roofs, the veranda, the school grounds.',
     note:'A reference-based miniature of the Zurgovani campus, not a year-exact reconstruction. No school interiors are modelled.',
     views:[['place','The campus'],['facade','The veranda'],['field','The field']],
-    music:{artist:'Pop Smoke',title:'Dior',version:'Official video · explicit lyrics',provider:'YouTube',url:'https://www.youtube.com/watch?v=oorVWW9ywG0',embed:'https://www.youtube-nocookie.com/embed/oorVWW9ywG0?playsinline=1&rel=0',height:210}},
+    music:{artist:'Pop Smoke',title:'Dior',version:'Meet The Woo · explicit lyrics',provider:'Spotify',url:'https://open.spotify.com/track/1SslOor5usE3EFLGtiMyIn',embed:'https://open.spotify.com/embed/track/1SslOor5usE3EFLGtiMyIn?utm_source=oembed',height:152}},
   {id:'stamba',name:'Stamba',short:'At Stamba',city:'Tbilisi',chapter:'A meeting place',color:'#805846',position:[8.2,0,-6.6],
     intro:'A place for meetings in Tbilisi, among brick, books and greenery.',
     note:'A compressed collection of Stamba’s public spaces. The café seating is illustrative, not a reconstruction of my meetings.',

@@ -5,8 +5,7 @@ export function createMusic(element,win=window){
   function close(restore=true){stop();open=false;const panel=element.querySelector('[data-music-panel]');if(panel)panel.hidden=true;const button=element.querySelector('[data-music-toggle]');button?.setAttribute('aria-expanded','false');if(restore)button?.focus();}
   function load(){
     stop();if(offline||!win.navigator.onLine){status('You’re offline. The world still works; music needs an internet connection.');return;}
-    // YouTube refuses embeds that send no referrer (Error 153), so it alone gets the site's origin.
-    const track=current.music;frame=win.document.createElement('iframe');frame.title=`${track.title} — official ${track.provider} player`;frame.src=track.embed;frame.height=String(track.height);frame.allow='encrypted-media; fullscreen; picture-in-picture';frame.referrerPolicy=track.provider==='YouTube'?'strict-origin-when-cross-origin':'no-referrer';
+    const track=current.music;frame=win.document.createElement('iframe');frame.title=`${track.title} — official ${track.provider} player`;frame.src=track.embed;frame.height=String(track.height);frame.allow='encrypted-media; fullscreen; picture-in-picture';frame.referrerPolicy='no-referrer';
     frame.addEventListener('error',()=>{stop();status('The player could not load. Try again or use the official link.');});
     element.querySelector('[data-music-frame]').append(frame);
     status('Official player requested. Use its own Play control. Playback may be a preview or require sign-in.');
