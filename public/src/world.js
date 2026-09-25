@@ -6,6 +6,10 @@ import { places } from './places.js';
 const v=a=>new THREE.Vector3(...a);
 const clamp=THREE.MathUtils.clamp;
 const tick=()=>new Promise(resolve=>requestAnimationFrame(resolve));
+// Library and Stamba stand behind a front-row building, so their labels float above their own roofs.
+const labelAnchors={library:[0,7.1,-1],stamba:[0,7.5,-1]};
+// Orbiting the overview stops about 25° above the ground so the atlas still reads as a map; close-ups keep their low presets.
+const overviewMaxPolar=1.13;
 
 export class World {
   constructor(element,callbacks={}){
@@ -145,8 +149,9 @@ export class World {
     for(const [id,item] of this.models)item.host.visible=all||id===this.active;
     for(const [id,platform] of this.platforms)platform.visible=all||id===this.active;
     this.routes.visible=all;this.marker.visible=!!this.active;
+    this.controls.maxPolarAngle=this.active||this.tween?Math.PI/2-.05:overviewMaxPolar;
   }
-  orbit(dx,dy=0){if(!this.alive)return;this.tween=null;const offset=this.camera.position.clone().sub(this.controls.target),s=new THREE.Spherical().setFromVector3(offset);s.theta+=dx;s.phi=clamp(s.phi+dy,.2,Math.PI/2-.05);this.camera.position.copy(this.controls.target).add(new THREE.Vector3().setFromSpherical(s));this.controls.update();this.finishVisibility();this.draw();this.callbacks.onManual?.();}
+  orbit(dx,dy=0){if(!this.alive)return;this.tween=null;this.finishVisibility();const offset=this.camera.position.clone().sub(this.controls.target),s=new THREE.Spherical().setFromVector3(offset);s.theta+=dx;s.phi=clamp(s.phi+dy,this.controls.minPolarAngle,this.controls.maxPolarAngle);this.camera.position.copy(this.controls.target).add(new THREE.Vector3().setFromSpherical(s));this.controls.update();this.draw();this.callbacks.onManual?.();}
   zoom(factor){if(!this.alive)return;this.tween=null;this.camera.zoom=clamp(this.camera.zoom*factor,.5,3);this.camera.updateProjectionMatrix();this.finishVisibility();this.draw();}
   frustum(){const aspect=this.element.clientWidth/Math.max(1,this.element.clientHeight);this.camera.left=-this.span*aspect/2;this.camera.right=this.span*aspect/2;this.camera.top=this.span/2;this.camera.bottom=-this.span/2;this.camera.updateProjectionMatrix();}
   resize(){
@@ -159,7 +164,7 @@ export class World {
     this.frame=0;if(!this.alive)return;
     if(this.tween){const {from,to,start,duration}=this.tween,t=clamp((time-start)/duration,0,1),e=1-Math.pow(1-t,4);this.camera.position.lerpVectors(from.position,to.position,e);this.controls.target.lerpVectors(from.target,to.target,e);this.span=THREE.MathUtils.lerp(from.span,to.span,e);this.camera.zoom=THREE.MathUtils.lerp(from.zoom,to.zoom??1,e);this.frustum();this.controls.update();if(t>=1){this.tween=null;this.finishVisibility();}}
     const start=performance.now();this.renderer.render(this.scene,this.camera);this.lastRenderMs=performance.now()-start;this.frames++;this.renderer.domElement.dataset.ready='true';
-    this.callbacks.onProject?.(places.map(place=>{const point=v(place.position).add(v(place.id==='library'?[0,7.1,-1]:[0,.35,5.2])).project(this.camera);return {id:place.id,x:(point.x+1)*this.element.clientWidth/2,y:(1-point.y)*this.element.clientHeight/2};}));
+    this.callbacks.onProject?.(places.map(place=>{const point=v(place.position).add(v(labelAnchors[place.id]??[0,.35,5.2])).project(this.camera);return {id:place.id,x:(point.x+1)*this.element.clientWidth/2,y:(1-point.y)*this.element.clientHeight/2};}));
     if(this.tween)this.draw();
   }
   pick(event){
@@ -172,7 +177,7 @@ export class World {
       if(!this.active&&node.userData.placeId){this.callbacks.onSelect?.(node.userData.placeId);return;}node=node.parent;
     }
   }
-  diagnostics(){return {place:this.active,view:this.viewName,moving:!!this.tween,libraryCutaway:this.models.get('library')?.root.userData.cutaway,entranceOpen:this.models.get('library')?.root.userData.entranceOpen,loaded:this.models.size,visiblePlaces:[...this.models.values()].filter(m=>m.host.visible).length,drawCalls:this.renderer.info.render.calls,triangles:this.renderer.info.render.triangles,geometries:this.renderer.info.memory.geometries,textures:this.renderer.info.memory.textures,frames:this.frames,lastRenderSubmitMs:this.lastRenderMs,buildMs:Object.fromEntries([...this.models].map(([id,m])=>[id,Math.round(m.buildMs)])),roomMeshes:this.models.has('room')?(()=>{let n=0;this.models.get('room').root.traverse(o=>{if(o.isMesh)n++;});return n;})():0};}
+  diagnostics(){return {place:this.active,view:this.viewName,moving:!!this.tween,tiltDeg:Math.round(THREE.MathUtils.radToDeg(Math.PI/2-this.controls.getPolarAngle())),libraryCutaway:this.models.get('library')?.root.userData.cutaway,entranceOpen:this.models.get('library')?.root.userData.entranceOpen,loaded:this.models.size,visiblePlaces:[...this.models.values()].filter(m=>m.host.visible).length,drawCalls:this.renderer.info.render.calls,triangles:this.renderer.info.render.triangles,geometries:this.renderer.info.memory.geometries,textures:this.renderer.info.memory.textures,frames:this.frames,lastRenderSubmitMs:this.lastRenderMs,buildMs:Object.fromEntries([...this.models].map(([id,m])=>[id,Math.round(m.buildMs)])),roomMeshes:this.models.has('room')?(()=>{let n=0;this.models.get('room').root.traverse(o=>{if(o.isMesh)n++;});return n;})():0};}
   dispose(){
     if(!this.alive)return;this.alive=false;cancelAnimationFrame(this.frame);this.frame=0;this.tween=null;this.resizeObserver.disconnect();document.removeEventListener('visibilitychange',this.onVisibility);this.motion.removeEventListener('change',this.onMotion);
     const canvas=this.renderer.domElement;canvas.removeEventListener('keydown',this.onKey);canvas.removeEventListener('pointerdown',this.onDown);canvas.removeEventListener('pointerup',this.onUp);canvas.removeEventListener('webglcontextlost',this.onLost);this.controls.dispose();disposeTree(this.scene);this.renderer.renderLists.dispose();this.renderer.dispose();canvas.remove();this.models.clear();
