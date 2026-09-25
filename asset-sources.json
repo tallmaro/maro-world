@@ -1,0 +1,126 @@
+{
+  "copiedOn": "2026-09-25",
+  "threeRevision": 180,
+  "scope": "Explicit public-ready allowlist only. GLBs and private references remain at source.",
+  "files": [
+    {
+      "source": "../maro-world-assets/bocconi-library/landmark.js",
+      "file": "public/assets/library/landmark.js",
+      "bytes": 16597,
+      "sha256": "eedd72cd78b654da949e01507f3975af7aebba51ee6499e340760dbc8deb46be",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/tbilisi-workspace/landmark.js",
+      "file": "public/assets/room/landmark.js",
+      "bytes": 23102,
+      "sha256": "12a1c338590e225366bd12026de7da4f7b28d90bb4154af12d253a5f8932a68a",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/landmark.js",
+      "file": "public/assets/qsi/landmark.js",
+      "bytes": 16514,
+      "sha256": "4d38ea7eb941560d19c8e1411778de1089cbb9cd3c3a608385aba01a18d77211",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/stamba.js",
+      "file": "public/assets/stamba/landmark.js",
+      "bytes": 18995,
+      "sha256": "24c5714baa5c57dc025ef015e194ae8c63e406c2d0f2d1d3d91add0f72ae1637",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/bocconi-library/preview.png",
+      "file": "public/assets/library/preview.png",
+      "bytes": 358855,
+      "sha256": "70551a8dd3605e228642eb1a398a299bfa1de695161001f7f36d19c4e3b3c5cf",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/tbilisi-workspace/preview.png",
+      "file": "public/assets/room/preview.png",
+      "bytes": 358698,
+      "sha256": "47b8ea88076af6bc9c19c72884def8724c3efd30b929a526aed33006070fee2e",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/preview.png",
+      "file": "public/assets/qsi/preview.png",
+      "bytes": 401942,
+      "sha256": "5be03688aef57a5f33b47f04aa920a9441a4599c46f533f1d934f5636176e521",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/preview.png",
+      "file": "public/assets/stamba/preview.png",
+      "bytes": 581373,
+      "sha256": "13ce602d04d44236b7ccabdcc57d4f9c5a063aae97994d7ccfe1cc6e332fc771",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/vendor/three.module.js",
+      "file": "public/vendor/three.module.js",
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/vendor/three.core.js",
+      "file": "public/vendor/three.core.js",
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/vendor/OrbitControls.js",
+      "file": "public/vendor/OrbitControls.js",
+      "bytes": 38703,
+      "sha256": "b97879c748170baadeb3fb84cea1ffdf4674e283dc06042f34e2acb95a76042c",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/vendor/THREE-LICENSE.txt",
+      "file": "public/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/stamba/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js",
+      "file": "public/vendor/BufferGeometryUtils.js",
+      "bytes": 35539,
+      "sha256": "fda7e946b8e0b5ab39b779206589e7a1079a22eb24efb89d7223e03fdfb1f751",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/fonts/barlow-latin-400-normal.woff2",
+      "file": "public/fonts/barlow-latin-400-normal.woff2",
+      "bytes": 21144,
+      "sha256": "7c9c80a6c32c0619d61c28f28723e68c5f8f75163e77ee5cf64c39e640e0d71e",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/fonts/barlow-latin-600-normal.woff2",
+      "file": "public/fonts/barlow-latin-600-normal.woff2",
+      "bytes": 21796,
+      "sha256": "2b14e8397d552f351a4396dec25ec5da1348865683100e94c4ab0faea4a9a254",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/fonts/barlow-condensed-latin-600-normal.woff2",
+      "file": "public/fonts/barlow-condensed-latin-600-normal.woff2",
+      "bytes": 21352,
+      "sha256": "0b281bf2f4179c06ba68f0a427f2341287c41eacc2ce9d534c6f5c513ac633fb",
+      "representation": "Byte-identical copy; original preserved"
+    },
+    {
+      "source": "../maro-world-assets/qsi-tbilisi/fonts/OFL-Barlow.txt",
+      "file": "public/fonts/OFL-Barlow.txt",
+      "bytes": 4314,
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "representation": "Byte-identical copy; original preserved"
+    }
+  ]
+}

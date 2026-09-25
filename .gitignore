@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+test-results/
+
+# Local build notes and generated review output; kept on disk, not published
+HANDOFF.md
+PRODUCT.md
+DESIGN.md
+docs/
+.impeccable/
+verification.json

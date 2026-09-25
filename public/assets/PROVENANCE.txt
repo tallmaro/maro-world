@@ -1,0 +1,10 @@
+The four preview.png files are original renders of the completed miniature models, copied unchanged on 25 September 2026. They are not reference photographs or image-generated reconstructions.
+
+library/preview.png: Bocconi Via Gobbi library miniature, source bocconi-library/preview.png.
+room/preview.png: Corrected workspace cutaway, source tbilisi-workspace/preview.png. The erroneous foreground textile/bench is absent. No private photograph is included.
+qsi/preview.png: QSI Tbilisi campus miniature, source qsi-tbilisi/preview.png.
+stamba/preview.png: Corrected Stamba courtyard miniature, source stamba/preview.png.
+
+The model geometry and stills were authored for Mariam's personal-world asset tasks. They are independent stylised studies, not surveyed architecture or official institutional/hotel assets. No source reference photographs or copied photographic textures are included. Exact copy/source SHA-256 records are retained in the project's development-only asset-sources.json.
+
+Three.js, OrbitControls and the geometry utility: MIT; see /vendor/THREE-LICENSE.txt. Barlow and Barlow Condensed: SIL Open Font License; see /fonts/OFL-Barlow.txt. Workspace rounded-box construction also adapts Three.js under the same MIT license.

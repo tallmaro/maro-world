@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com https://www.youtube-nocookie.com https://embed.music.apple.com; object-src 'none'; base-uri 'none'">
+  <meta name="theme-color" content="#cce1ef"><meta name="description" content="Maro's little world: four places, between Milan and Tbilisi.">
+  <title>Maro’s world</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#place-nav">Skip to places</a>
+  <header class="masthead">
+    <button id="brand" class="brand" aria-label="Maro’s world, return to overview"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 8 9-4 9 4 8-4v20l-8 4-9-4-9 4Z"/><path d="M12 4v20M21 8v20"/></svg>Maro’s world<span class="brand-dot" aria-hidden="true"></span></button>
+    <span class="where">Somewhere between Milan & Tbilisi</span>
+    <button id="help-toggle" class="quiet-button" aria-expanded="false" aria-controls="help-panel">How to wander</button>
+  </header>
+  <main id="world-main">
+    <section id="scene-shell" aria-label="Explore Maro’s world">
+      <div id="scene"></div>
+      <div id="map-labels" aria-label="Places on the atlas"></div>
+      <div id="world-intro" class="world-intro"><h1>A little world,<br>mostly mine.</h1><p>Four familiar places.<br>Come have a look around.</p><span class="atlas-note">A personal atlas, not a map to scale.</span></div>
+      <div id="chapter-labels" aria-hidden="true"><span class="milan">Milan</span><span class="tbilisi">Tbilisi</span></div>
+      <button id="back" class="back-button" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18"/></svg>Back to world</button>
+      <div id="loading-status" role="status" data-complete="false">Unfolding the world…</div>
+      <div id="load-errors" hidden></div>
+      <div id="fallback" hidden><p id="fallback-message">The 3D view is unavailable. You can still explore the places below.</p><img src="assets/library/preview.png" alt="Original miniature of Bocconi library"><button id="retry-3d">Reload 3D view</button></div>
+      <div class="camera-tools" id="camera-tools" aria-label="Camera controls"><button id="rotate-left" aria-label="Rotate left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9a8 8 0 1 1 0 7M4 3v6h6"/></svg></button><button id="zoom-in" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button><button id="zoom-out" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button><button id="reset-view" aria-label="Reset current view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3H3v6M15 3h6v6M3 15v6h6M21 15v6h-6"/></svg></button></div>
+      <p id="gesture-hint" class="gesture-hint">Choose a place · drag to orbit · scroll to get closer</p>
+    </section>
+    <aside id="place-panel" hidden aria-labelledby="place-title">
+      <div class="place-heading"><h1 id="place-title" tabindex="-1"></h1><span id="place-city"></span></div>
+      <p id="place-intro"></p>
+      <div id="view-buttons" class="view-buttons" role="group" aria-label="Views of this place"></div>
+      <div id="room-light" class="room-light" hidden><span>Set the light</span><button data-light="day" aria-pressed="true">Daylight</button><button data-light="night" aria-pressed="false">Lamplight</button></div>
+      <section id="study-layer" hidden aria-labelledby="study-heading"><h2 id="study-heading">Off the bookshelf</h2><p>Some of the things I studied at Bocconi.</p><label for="course-select">Choose a course</label><select id="course-select"></select><h3 id="course-title"></h3><p id="course-area"></p><p id="takeaway">Favourite takeaway — not added yet.</p><button id="study-table">Look at this study table</button><button id="doors" aria-pressed="true">Close entrance doors</button></section>
+      <div id="music"></div>
+      <details class="about-place"><summary>About this miniature</summary><p id="place-note"></p><p>Original, stylised geometry. The places keep their own details; their arrangement here is imaginative.</p></details>
+    </aside>
+  </main>
+  <nav id="place-nav" class="place-nav" aria-label="Visit a place">
+    <button data-place="overview" class="nav-overview" aria-label="Show world overview" aria-current="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z M9 3v15M15 6v15"/></svg><span>The world</span></button>
+    <button data-place="library" aria-label="Visit Bocconi library"><span class="nav-chip" style="--place-color:#a77339"></span><span>The library<small>Milan</small></span></button>
+    <button data-place="room" aria-label="Visit My workspace"><span class="nav-chip" style="--place-color:#326653"></span><span>At home<small>Tbilisi</small></span></button>
+    <button data-place="qsi" aria-label="Visit QSI Tbilisi"><span class="nav-chip" style="--place-color:#9b493c"></span><span>School days<small>Tbilisi</small></span></button>
+    <button data-place="stamba" aria-label="Visit Stamba"><span class="nav-chip" style="--place-color:#805846"></span><span>At Stamba<small>Tbilisi</small></span></button>
+  </nav>
+  <section id="help-panel" hidden aria-labelledby="help-title"><h2 id="help-title">Take the scenic route.</h2><p>Pick any miniature or a place in the bottom index. The view comes to you.</p><dl><dt>Mouse or touch</dt><dd>Drag to turn. Scroll or pinch to zoom.</dd><dt>Keyboard</dt><dd>Tab to any button, then Enter. On the scene: arrow keys turn, + / − zoom. Home resets. Escape returns to the world.</dd><dt>Music</dt><dd>Optional, and off until you load a player. Leaving a place unloads it.</dd></dl><p>Prefer less motion? Your device’s reduced-motion setting is respected.</p><button id="help-close">Got it</button></section>
+  <noscript><section class="noscript"><h1>Four places in Maro’s world</h1><p>Turn on JavaScript to explore the shared 3D atlas. These are original model stills, not photographs.</p><a href="assets/library/preview.png">Bocconi library</a><a href="assets/room/preview.png">Workspace</a><a href="assets/qsi/preview.png">QSI Tbilisi</a><a href="assets/stamba/preview.png">Stamba</a></section></noscript>
+</body></html>

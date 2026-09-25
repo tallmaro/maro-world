@@ -1,0 +1,14 @@
+{
+  "name": "maro-world",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "assets:verify": "node tools/copy-assets.mjs --verify",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser.mjs && node tests/failures.mjs"
+  },
+  "devDependencies": { "three": "0.180.0", "jsdom": "26.1.0" }
+}
